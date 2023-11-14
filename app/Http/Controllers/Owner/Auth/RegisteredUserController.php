@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
                 Auth::guard('owners')->login($owner);
 
             });
-
+            
         } catch(Throwable $e) {
             Log::error($e);
             throw $e;

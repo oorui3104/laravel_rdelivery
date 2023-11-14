@@ -10,6 +10,7 @@ use App\Http\Controllers\Owner\Auth\RegisteredUserController;
 use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Owner\ShopController;
 
 // Route::get('/', function () {
 //     return view('owner.welcome');
@@ -18,6 +19,16 @@ use App\Http\Controllers\ProfileController;
 Route::get('/dashboard', function () {
     return view('owner.dashboard');
 })->middleware(['auth:owners'])->name('dashboard');
+
+Route::prefix('shops')
+->middleware(['auth:owners'])
+->name('shops.')
+->controller(ShopController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('edit/{id}', 'edit')->name('edit');
+    Route::post('update/{id}', 'update')->name('update');
+});
 
 Route::middleware('auth:owners')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
