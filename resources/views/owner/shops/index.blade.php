@@ -7,13 +7,14 @@
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <x-flash-message />
           <div class="flex gap-8">
               <div class="w-3/5 overflow-hidden">
                 <a href="{{ route('owner.shops.edit', ['id' => $shop['id']]) }}">
                   @if(empty($shop['filename']))
                   <img class="object-fill" src="{{ asset('/images/test1920*1080.jpeg') }}" alt="">
                   @else 
-                  <img src="{{ asset('/images/ . $shop["filename"]') }}" alt="">
+                  <img src="{{ asset('/storage/shops/' . $shop["filename"]) }}" alt="">
                   @endif
                 </a>
               </div>

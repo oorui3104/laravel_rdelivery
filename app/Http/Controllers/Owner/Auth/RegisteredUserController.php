@@ -50,10 +50,10 @@ class RegisteredUserController extends Controller
 
                 Shop::create([
                     'owner_id' => $owner->id,
-                    'name' => 'ここに店名が入ります',
-                    'address' => 'ここに住所が入ります',
-                    'inquiry' => 'ここに問い合わせ先が入ります', 
-                    'information' => 'ここに店舗情報が入ります',
+                    'name' => '店名を入力してください',
+                    'address' => '住所を入力してください',
+                    'inquiry' => '問い合わせ先を入力してください', 
+                    'information' => '店舗情報を入力してください',
                     'filename' => '',
                 ]);
 

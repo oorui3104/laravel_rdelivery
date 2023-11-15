@@ -15,31 +15,36 @@
         <form action="{{ route('owner.shops.update', ['id' => $shop['id']]) }}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="p-2">
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
             <div class="relative">
-              <label for="name" class="leading-7 text-sm text-gray-600">店舗名</label>
-              <input type="text" id="name" name="name" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              <label for="name" class="leading-7 text-sm text-gray-600">店舗名(必須)</label>
+              <input type="text" id="name" name="name" value="{{ old('name', $shop['name']) }}"  class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+          </div>
+          <div class="p-2">
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+            <div class="relative">
+              <label for="address" class="leading-7 text-sm text-gray-600">住所(必須)</label>
+              <input type="text" id="address" name="address" value="{{ old('address', $shop['address']) }}" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
           </div>
           <div class="p-2">
             <div class="relative">
-              <label for="address" class="leading-7 text-sm text-gray-600">住所</label>
-              <input type="text" id="address" name="address" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-            </div>
-          </div>
-          <div class="p-2">
-            <div class="relative">
-              <label for="inquiry" class="leading-7 text-sm text-gray-600">問い合わせ先</label>
-              <input type="text" id="inquiry" name="inquiry" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+              <x-input-error :messages="$errors->get('inquiry')" class="mt-2" />
+              <label for="inquiry" class="leading-7 text-sm text-gray-600">問い合わせ先(必須)</label>
+              <input type="text" id="inquiry" name="inquiry" value="{{ old('inquiry', $shop['inquiry']) }}" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
             </div>
           </div>
           <div class="p-2 w-full">
             <div class="relative">
+              <x-input-error :messages="$errors->get('information')" class="mt-2" />
               <label for="information" class="leading-7 text-sm text-gray-600">店舗情報</label>
-              <textarea id="information" name="information" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+              <textarea id="information" name="information" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('information', $shop['information']) }}</textarea>
             </div>
           </div>
           <div class="p-2">
             <div class="relative bg-white-100">
+              <x-input-error :messages="$errors->get('image')" class="mt-2" />
               <label for="image" class="leading-7 text-sm text-gray-600">店舗画像</label>
               <input type="file" id="image" name="image" accept="image/*" class="w-full bg-white bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-8 transition-colors duration-200 ease-in-out">
             </div>

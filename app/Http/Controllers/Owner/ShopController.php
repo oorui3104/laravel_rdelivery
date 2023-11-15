@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
+use App\Service\StoreImage;
 
 class ShopController extends Controller
 {
@@ -41,21 +41,38 @@ class ShopController extends Controller
         return view('owner.shops.edit', compact('shop'));
     }
 
-    public function update (Request $request, $id) {
+    public function update (UploadImageRequest $request, $id) {
         $imageFile = $request->image;
 
-        //　画像のリサイズと保存（ライブラリ使用）
+        //　画像のリサイズと保存（処理切り離し＆リサイズはライブラリ使用）
         if(!is_null($imageFile)) {
-            $resizedImage = InterventionImage::make($imageFile)
-            ->resize(1920, 1080)
-            ->encode();
-
-            $fileName = uniqid();
-            $extension = $imageFile->extension();
-            $StorefileName = $fileName . '.' . $extension;
-
-            Storage::put('public/shops/' . $StorefileName, $resizedImage);
+            $StorefileName = StoreImage::upload($imageFile, 'shops');
         }
+
+        $request->validate([
+            'name' => ['required', 'string'],
+            'address' => ['required', 'string'],
+            'inquiry' => ['required'],
+            'information' => ['max:300'],
+        ]);
+
+        $shop = Shop::findOrFail($id);
+        $shop->name = $request->name;
+        $shop->address = $request->address;
+        $shop->inquiry = $request->inquiry;
+        $shop->information = $request->information;
+        
+        if(!is_null($imageFile)) {
+            $shop->filename = $StorefileName;
+        }
+
+        $shop->save();
+
+        return to_route('owner.shops.index')
+        ->with([
+            'message' => '店舗情報を更新しました。',
+            'status' => 'info'
+        ]);
         
     }
 }
