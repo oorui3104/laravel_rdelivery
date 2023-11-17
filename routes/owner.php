@@ -11,6 +11,7 @@ use App\Http\Controllers\Owner\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Owner\ShopController;
+use App\Http\Controllers\Owner\ImageController;
 
 // Route::get('/', function () {
 //     return view('owner.welcome');
@@ -28,6 +29,16 @@ Route::prefix('shops')
     Route::get('/', 'index')->name('index');
     Route::get('edit/{id}', 'edit')->name('edit');
     Route::post('update/{id}', 'update')->name('update');
+});
+
+Route::prefix('images')
+->middleware(['auth:owners'])
+->name('images.')
+->controller(ImageController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/', 'store')->name('store');
+    Route::post('destroy/{id}', 'destroy')->name('destroy');
 });
 
 Route::middleware('auth:owners')->group(function () {

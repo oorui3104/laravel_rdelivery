@@ -7,12 +7,19 @@ use InterventionImage;
 class StoreImage {
 
   static function upload($imageFile, $folderName) {
-    $resizedImage = InterventionImage::make($imageFile)
+
+    if (is_array($imageFile)) {
+      $file = $imageFile['image'];
+    } else {
+      $file = $imageFile;
+    }
+
+    $resizedImage = InterventionImage::make($file)
     ->resize(1920, 1080)
     ->encode();
 
     $fileName = uniqid();
-    $extension = $imageFile->extension();
+    $extension = $file->extension();
     $StorefileName = $fileName . '.' . $extension;
 
     Storage::put('public/' . $folderName . '/'  . $StorefileName, $resizedImage);

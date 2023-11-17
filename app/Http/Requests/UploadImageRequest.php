@@ -24,7 +24,8 @@ class UploadImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'image|max:2048'
+            'image' => 'image|max:2048',
+            'files.*.image' => 'required|image|max:2048',
         ];
     }
 
@@ -32,6 +33,7 @@ class UploadImageRequest extends FormRequest
         return [
         'image' => '指定されたファイルが画像ではありません。',
         'max' => 'ファイルサイズは2MB以内にしてください。',
+        'required' => '画像を指定してください'
         ];
     }
 }

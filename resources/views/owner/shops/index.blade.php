@@ -1,8 +1,9 @@
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('Dashboard') }}
+          店舗情報
       </h2>
+      <p class="mt-3">(画像をクリックすると、店舗情報を更新できます。)</p>
   </x-slot>
 
   <div class="py-12">
