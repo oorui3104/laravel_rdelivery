@@ -20,8 +20,8 @@ return new class extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->string('name');
-            $table->integer('price');
-            $table->text('information');
+            $table->unsignedInteger('price');
+            $table->text('information')->nullable();
             $table->foreignId('image1')->nullable()->constrained('images');
             $table->foreignId('image2')->nullable()->constrained('images');
             $table->foreignId('image3')->nullable()->constrained('images');

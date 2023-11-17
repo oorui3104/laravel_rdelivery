@@ -13,7 +13,7 @@
               <div class="sm:w-3/5 px-6 overflow-hidden">
                 <a href="{{ route('owner.shops.edit', ['id' => $shop['id']]) }}">
                   @if(empty($shop['filename']))
-                  <img class="object-fill" src="{{ asset('/images/test1920*1080.jpeg') }}" alt="">
+                  <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
                   @else 
                   <img src="{{ asset('/storage/shops/' . $shop["filename"]) }}" alt="">
                   @endif

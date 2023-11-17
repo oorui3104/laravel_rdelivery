@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('inquiry');
-            $table->text('information');
+            $table->text('information')->nullable();
             $table->text('filename')->nullable();
             $table->timestamps();
         });

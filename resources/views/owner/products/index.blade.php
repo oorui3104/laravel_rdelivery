@@ -23,9 +23,13 @@
               <x-flash-message class="text-center" />
               <div class="flex flex-wrap -m-4">
                 @foreach ($ownerInfo->shop->product as $product)
-                  <div class="lg:w-1/4 md:w-1/2 p-4 mb-20 w-full">
+                  <div class="lg:w-1/4 md:w-1/2 p-4 mb-8 w-full">
                     <a href="{{ route('owner.products.edit', ['product' => $product['id']]) }}" class="block relative h-48 rounded overflow-hidden">
-                      <img alt="" class="object-contain object-center w-full h-full block" src="{{ asset('/storage/products/' . $product->imageFirst->filename) }}">
+                      @if (!is_null($product->imageFirst) && !is_null($product->imageFirst->filename))
+                        <img alt="" class="object-contain object-center w-full h-full block" src="{{ asset('/storage/products/' . $product->imageFirst->filename) }}">
+                      @else
+                        <img alt="" class="object-contain object-center w-full h-full block" src="{{ asset('/images/no_image.jpg') }}">
+                      @endif
                     </a>
                     <div class="mt-4">
                       <h2 class="text-gray-900 text-center title-font text-lg font-medium">{{ $product['name'] }}</h2>

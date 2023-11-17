@@ -160,6 +160,8 @@ return [
         'information' => '店舗情報',
         'password'  => 'パスワード',
         'email' => 'メールアドレス',
+        'price' => '価格',
+        'quantity' => '個数'
     ],
 
 ];
