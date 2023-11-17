@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Owner\ShopController;
 use App\Http\Controllers\Owner\ImageController;
+use App\Http\Controllers\Owner\ProductController;
 
 // Route::get('/', function () {
 //     return view('owner.welcome');
@@ -40,6 +41,11 @@ Route::prefix('images')
     Route::post('/', 'store')->name('store');
     Route::post('destroy/{id}', 'destroy')->name('destroy');
 });
+
+Route::resource('products', ProductController::class)
+->middleware(['auth:owners'])
+->except(['show']);
+
 
 Route::middleware('auth:owners')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

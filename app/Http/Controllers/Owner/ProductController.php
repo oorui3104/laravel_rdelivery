@@ -3,18 +3,40 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+    public function __construct()
+    {
+        // ログインしているオーナーに紐づく画像情報のみ削除可
+        $this->middleware(function ($request, $next) {
+            $id = $request->route()->parameter('product');
+            if (!is_null($id)) {
+                $getOwnerId = Product::findOrFail($id)->shop->owner->id;
+                $productOwnerId = (int)$getOwnerId;
+                $ownerId = Auth::id();
+                if ($productOwnerId !== $ownerId) {
+                    abort(404);
+                } 
+            }
+
+            return $next($request);
+        });
+    }
+
     public function index()
     {
-        //
+        //viewでproductをループさせる
+        $ownerInfo = Owner::with('shop.product.ImageFirst')
+        ->where('id', Auth::id())
+        ->first();
+
+        return view('owner.products.index', compact('ownerInfo'));
     }
 
     /**

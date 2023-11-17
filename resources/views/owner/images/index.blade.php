@@ -23,7 +23,7 @@
               <div class="flex flex-wrap -m-4">
                 @foreach ($images as $image)
                   <div class="lg:w-1/4 md:w-1/2 p-4 mb-20 w-full">
-                    <img alt="" class="object-cover object-center w-full h-full block" src="{{ asset('/storage/products/' . $image["filename"]) }}">
+                    <img alt="" class="object-contain object-center w-full h-full block" src="{{ asset('/storage/products/' . $image["filename"]) }}">
                     <form action="{{ route('owner.images.destroy', ['id' => $image['id']]) }}" method="post" class="mt-4">
                       @csrf
                       <button type="submit" class="flex mx-auto text-white bg-red-500 border-0 py-2 px-12 focus:outline-none hover:bg-red-600 rounded text-lg">削除</button>

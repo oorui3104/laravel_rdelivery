@@ -10,7 +10,7 @@ if(session('status') == 'error'){
 @endphp
 
 @if(session('message'))
-  <div class="{{$bgColor}} w-1/3 mb-5 p-2 text-center text-white">
+  <div class="{{$bgColor}} w-1/2 mb-5 p-2 text-center mx-auto text-white">
       {{session('message')}}
   </div>
 @endif
