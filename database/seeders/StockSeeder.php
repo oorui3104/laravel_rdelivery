@@ -22,10 +22,21 @@ class StockSeeder extends Seeder
                 'quantity' => 5,
             ],
             [
-                'product_id' => 1,
-                'type' => 2,
-                'quantity' => -3,
+                'product_id' => 2,
+                'type' => 1,
+                'quantity' => 5,
             ],
+            [
+                'product_id' => 3,
+                'type' => 1,
+                'quantity' => 5,
+            ],
+            [
+                'product_id' => 4,
+                'type' => 1,
+                'quantity' => 5,
+            ],
+
         ]);
     }
 }

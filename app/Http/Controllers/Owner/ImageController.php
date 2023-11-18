@@ -100,7 +100,7 @@ class ImageController extends Controller
         return to_route('owner.images.index')
         ->with([
             'message' => '画像を削除しました。',
-            'status' => 'info'
+            'status' => 'error'
         ]);
     }
 

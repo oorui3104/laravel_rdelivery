@@ -31,7 +31,7 @@
                         <img alt="" class="object-contain object-center w-full h-full block" src="{{ asset('/images/no_image.jpg') }}">
                       @endif
                     </a>
-                    <div class="mt-4">
+                    <div>
                       <h2 class="text-gray-900 text-center title-font text-lg font-medium">{{ $product['name'] }}</h2>
                       <p class="mt-1 text-center">{{ $product['price'] }}円</p>
                     </div>

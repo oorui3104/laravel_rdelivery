@@ -1,4 +1,6 @@
 @php
+  $cImage = $currentImage ?? '' ;
+  $cImageId = $currentImageId ?? '' ;
   if( $name === 'image1') { $modal = 'modal-1';}
   if( $name === 'image2') { $modal = 'modal-2';}
   if( $name === 'image3') { $modal = 'modal-3';}
@@ -42,8 +44,13 @@
 <div class="flex justify-between items-center mb-4 mt-4"> 
   <a href="#" class="text-blue-500" data-micromodal-trigger="{{ $modal }}">ファイルを選択</a>
   <div class="w-1/4">
-    <img id="{{ $name }}_thumbnail" src=""> 
-  </div>
+    <img id="{{ $name }}_thumbnail" 
+    @if($cImage)
+    src="{{ asset('/storage/products/' . $cImage) }}"
+    @else
+    src=""
+    @endif >
+    </div>
 </div>
 
-<input id="{{ $name }}_hidden" type="hidden" name="{{ $name }}"" value="">
+<input id="{{ $name }}_hidden" type="hidden" name="{{ $name }}" value="{{ $cImageId }}">

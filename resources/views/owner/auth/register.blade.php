@@ -1,7 +1,15 @@
 <x-guest-layout>
+    <div class="w-24 mx-auto mb-6">
+        <a href="/">
+            <x-application-logo class="w-12 h-20 fill-current text-gray-500" />
+        </a>
+    </div>
+    
     <h1 class="mb-4 text-center" >新規登録（オーナー用）</h1>
     <form method="POST" action="{{ route('owner.register') }}">
         @csrf
+
+
 
         <!-- Name -->
         <div>
