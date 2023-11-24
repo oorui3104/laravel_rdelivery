@@ -45,10 +45,8 @@
                 <label for="quantity" class="leading-7 text-sm text-gray-600"></label>
                 <input type="number" id="quantity" name="quantity" value='0' min="0" max="99" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 leading-8 transition-colors duration-200 ease-in-out">
               </div>
-
             </div>
           </div>
-
           <div class="p-2 w-full">
             <div class="relative">
               <x-input-error :messages="$errors->get('information')" class="mt-2" />
@@ -56,7 +54,6 @@
               <textarea id="information" name="information" class="w-full bg-white-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ old('information', $product['information']) }}</textarea>
             </div>
           </div>
-          
           <div class="p-2">
             <div class="relative bg-white-100">
               <x-input-error :messages="$errors->get('image1')" class="mt-2" />
@@ -66,12 +63,11 @@
               <label for="image" class="leading-7 text-sm text-gray-600">商品画像(最大で4つ選択可)</label>
             </div>
           </div>
-
             <x-select-image :images="$images" name="image1" currentImage="{{$product->imageFirst->filename ?? ''}}" currentImageId="{{$product->image1}}"/>
             <x-select-image :images="$images" name="image2" currentImage="{{$product->imageSecound->filename ?? ''}}" currentImageId="{{$product->image2}}"/>
             <x-select-image :images="$images" name="image3" currentImage="{{$product->imageThird->filename ?? ''}}" currentImageId="{{$product->image3}}"/>
             <x-select-image :images="$images" name="image4" currentImage="{{$product->imageFourth->filename ?? ''}}" currentImageId="{{$product->image4}}"/>
-
+              
           <input id="" type="hidden" name="shop_id" value="{{ $shop->id }}">
         
           <div class="p-2 w-full">

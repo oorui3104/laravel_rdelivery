@@ -19,6 +19,8 @@
             @if(auth('owners')->user())
                 @include('layouts.owner-navigation')
             @elseif(auth('users')->user())
+                @include('layouts.logged-user-navigation')
+            @else
                 @include('layouts.user-navigation')
             @endif
             

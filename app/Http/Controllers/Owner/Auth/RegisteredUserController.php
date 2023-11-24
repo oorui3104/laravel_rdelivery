@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
         ]);
 
         try {
-            DB::transaction(function () use($request){
+            DB::transaction(function () use($request, &$owner){
                 $owner = Owner::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -59,14 +59,23 @@ class RegisteredUserController extends Controller
 
                 event(new Registered($owner));
                 Auth::guard('owners')->login($owner);
+            });  
 
-            });
-            
-        } catch(Throwable $e) {
-            Log::error($e);
-            throw $e;
+            } catch(Throwable $e) {
+                Log::error($e);
+                throw $e;
+            }
+
+        if ($owner && $owner->id) {
+            return redirect()->route('owner.shops.edit', ['id' => $owner->id])
+            ->with([
+                'message' => '店舗の情報を登録してください',
+                'status' => 'info'
+            ]);
+
+        } else {
+            Log::error('オーナーのidが取得できていません');
         }
-
-        return redirect(RouteServiceProvider::OWNER_HOME);
+        
     }
 }

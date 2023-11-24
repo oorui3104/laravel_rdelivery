@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.welcome');
+// Route::get('/', function () {
+//     return view('user.welcome');
+// });
+
+Route::prefix('/')
+->name('items.')
+->controller(ItemController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('shop/{id}', 'shopShow')->name('shop');
+    Route::get('show/{id}', 'show')->name('show');
 });
 
 Route::get('/dashboard', function () {

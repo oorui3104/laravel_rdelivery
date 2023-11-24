@@ -130,8 +130,10 @@ class ProductController extends Controller
                 
                 //在庫情報を更新
                 if (!is_null($request->type)) {
-                    if ($request->type === '1') { $quantity = $request->quantity; }
-                    if ($request->type === '2') { $quantity = $request->quantity * -1; }
+                    if ($request->type === \Constants::PRODUCT_LIST['add']) 
+                        { $quantity = $request->quantity; }
+                    if ($request->type === \Constants::PRODUCT_LIST['reduce']) 
+                        { $quantity = $request->quantity * -1; }
                     Stock::create([
                         'product_id' => $product->id,
                         'type' => $request->type,
@@ -151,12 +153,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $product = Product::findOrFail($id);

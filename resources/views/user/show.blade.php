@@ -1,0 +1,43 @@
+<x-app-layout>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      商品情報
+    </h2>
+  </x-slot>
+
+  <div class="py-12">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+              <div class="sm:flex sm:gap-8">
+              <div class="sm:w-2/3 overflow-hidden">
+                  @if(empty($product->imageFirst->filename))
+                  <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
+                  @else 
+                  <img src="{{ asset('/storage/products/' . $product->imageFirst->filename) }}" alt="">
+                  @endif
+              </div>
+              <div class="sm:w-1/2 p-6 bg-white overflow-hidden shadow-sm sm:rounded-lg"">
+                <p class="p-2 text-gray-900 text-xl">{{ $product->shop->name }}</p>
+                <p class="p-2 text-gray-900 text-3xl">{{ $product['name'] }}</p>
+                <p class="p-2 text-gray-900">{{ $product['information'] }}</p>
+                <p class="mt-8 p-2 text-gray-900 text-xl">{{ number_format($product['price']) }} 円（税込）</p>
+                <div class="md:flex justify-between gap-4 items-center  p-2"> 
+                  <div class="flex items-center">
+                    <span class="mr-3">数量</span>
+                    <div class="relative">
+                      <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                        @for ($i = 1; $i < $quantity; $i++ )
+                          <option value="{{ $i }}" >{{ $i }}</option>
+                        @endfor
+                      </select>
+                    </div>
+                  </div>
+                  <button  type="button" class="text-white bg-indigo-500 border-0 py-2 px-6 md:mt-0 mt-4 focus:outline-none hover:bg-indigo-600 rounded">カートに追加</button>
+                </div>
+     
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+</x-app-layout>
