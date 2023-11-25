@@ -9,13 +9,44 @@
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="sm:flex sm:gap-8">
-              <div class="sm:w-2/3 overflow-hidden">
-                  @if(empty($product->imageFirst->filename))
-                  <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
-                  @else 
-                  <img src="{{ asset('/storage/products/' . $product->imageFirst->filename) }}" alt="">
-                  @endif
-              </div>
+                <div class="sm:w-2/3 overflow-hidden">
+                    <div class="swiper-container">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          @if(empty($product->imageFirst->filename))
+                            <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
+                          @else 
+                          <img src="{{ asset('/storage/products/' . $product->imageFirst->filename) }}" alt="">
+                          @endif
+                        </div>
+                        <div class="swiper-slide">
+                          @if(empty($product->imageSecound->filename))
+                            <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
+                          @else 
+                          <img src="{{ asset('/storage/products/' . $product->imageSecound->filename) }}" alt="">
+                          @endif
+                        </div>
+                        <div class="swiper-slide">
+                          @if(empty($product->ImageThird->filename))
+                            <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
+                          @else 
+                          <img src="{{ asset('/storage/products/' . $product->ImageThird->filename) }}" alt="">
+                          @endif
+                        </div>
+                        <div class="swiper-slide">
+                          @if(empty($product->ImageFourth->filename))
+                            <img class="object-fill" src="{{ asset('/images/no_image.jpg') }}" alt="">
+                          @else 
+                          <img src="{{ asset('/storage/products/' . $product->ImageFourth->filename) }}" alt="">
+                          @endif
+                        </div>
+                      </div>
+                      <div class="swiper-pagination"></div>
+                      <div class="swiper-button-prev"></div>
+                      <div class="swiper-button-next"></div>
+                      <div class="swiper-scrollbar"></div>
+                    </div>
+                 </div>
               <div class="sm:w-1/2 p-6 bg-white overflow-hidden shadow-sm sm:rounded-lg"">
                 <p class="p-2 text-gray-900 text-xl">{{ $product->shop->name }}</p>
                 <p class="p-2 text-gray-900 text-3xl">{{ $product['name'] }}</p>
