@@ -2,7 +2,7 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24">
-            <div class="flex">
+            <div class="flex justify-between">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <div class="w-24">
@@ -18,7 +18,7 @@
                         <x-nav-link :href="route('user.login')" :active="request()->routeIs('user.login')">
                             ユーザー情報
                         </x-nav-link>
-                        <x-nav-link :href="route('user.login')" :active="request()->routeIs('user.login')">
+                        <x-nav-link :href="route('user.carts.index')" :active="request()->routeIs('user.carts.index')">
                             カートを見る
                         </x-nav-link>
                         <form class="inline-flex items-center" method="POST" action="{{ route('user.logout') }}">
@@ -107,7 +107,7 @@
                     <x-responsive-nav-link :href="route('user.login')">
                         ユーザー情報
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('user.login')">
+                    <x-responsive-nav-link :href="route('user.carts.index')">
                         カートを見る
                     </x-responsive-nav-link>
                     <form class="w-full inline-flex items-center" method="POST" action="{{ route('user.logout') }}">

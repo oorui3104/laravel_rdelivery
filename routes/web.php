@@ -3,21 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('user.welcome');
-// });
+use App\Http\Controllers\User\CartController;
 
 Route::prefix('/')
 ->name('items.')
@@ -26,6 +12,16 @@ Route::prefix('/')
     Route::get('/', 'index')->name('index');
     Route::get('shop/{id}', 'shopShow')->name('shop');
     Route::get('show/{id}', 'show')->name('show');
+});
+
+Route::prefix('carts')
+->middleware(['auth:users'])
+->name('carts.')
+->controller(CartController::class)
+->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/{id}', 'store')->name('store');
+    Route::post('delete/{id}', 'delete')->name('delete');
 });
 
 Route::get('/dashboard', function () {

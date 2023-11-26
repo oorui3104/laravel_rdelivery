@@ -52,22 +52,28 @@
                 <p class="p-2 text-gray-900 text-3xl">{{ $product['name'] }}</p>
                 <p class="p-2 text-gray-900">{{ $product['information'] }}</p>
                 <p class="mt-8 p-2 text-gray-900 text-xl">{{ number_format($product['price']) }} 円（税込）</p>
-                <div class="md:flex justify-between gap-4 items-center  p-2"> 
-                  <div class="flex items-center">
-                    <span class="mr-3">数量</span>
-                    <div class="relative">
-                      <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
-                        @for ($i = 1; $i < $quantity; $i++ )
-                          <option value="{{ $i }}" >{{ $i }}</option>
-                        @endfor
-                      </select>
-                    </div>
-                  </div>
-                  <button  type="button" class="text-white bg-indigo-500 border-0 py-2 px-6 md:mt-0 mt-4 focus:outline-none hover:bg-indigo-600 rounded">カートに追加</button>
-                </div>
-     
+                 @if (auth('users')->user())
+                    <form action="{{ route('user.carts.store', ['id' => $product['id']]) }}" method="POST">
+                      @csrf
+                      <div class="md:flex justify-between gap-4 items-center  p-2"> 
+                          <div class="flex items-center">
+                            <span class="mr-3">数量</span>
+                            <div class="relative">
+                              <select name="quantity" class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                                @for ($i = 1; $i < $quantity; $i++ )
+                                  <option value="{{ $i }}" >{{ $i }}</option>
+                                @endfor
+                              </select>
+                            </div>
+                          </div>
+                          <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-6 md:mt-0 mt-4 focus:outline-none hover:bg-indigo-600 rounded">カートに追加</button>
+                      </div>
+                    </form>
+                 @else
+                    <p class="p-2 mt-12 text-gray-900 text-sm">※ 商品を購入をご希望の場合、ログイン（新規登録）をしてください。</p>
+                 @endif
               </div>
-          </div>
+            </div>
           </div>
       </div>
   </div>
