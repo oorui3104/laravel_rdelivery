@@ -15,7 +15,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth('users')->user())
-                        <x-nav-link :href="route('user.login')" :active="request()->routeIs('user.login')">
+                        <x-nav-link :href="route('user.profile.edit')" :active="request()->routeIs('user.login')">
                             ユーザー情報
                         </x-nav-link>
                         <x-nav-link :href="route('user.carts.index')" :active="request()->routeIs('user.carts.index')">
@@ -104,7 +104,7 @@
 
             <div class="mt-3 space-y-1">
                 @if(auth('users')->user())
-                    <x-responsive-nav-link :href="route('user.login')">
+                    <x-responsive-nav-link :href="route('user.profile.edit')">
                         ユーザー情報
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('user.carts.index')">

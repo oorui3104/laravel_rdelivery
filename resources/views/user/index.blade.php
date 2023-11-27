@@ -20,6 +20,7 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
              <section class="text-gray-600 body-font">
                 <div class="container mx-auto px-5 py-6">
+                    <h2 class="text-2xl mb-4 text-center">商品一覧</h2>
                     <div class="flex flex-wrap -m-4">
                         @foreach ($products as $product)
                         <div class="lg:w-1/4 md:w-1/2 p-4 mb-8 w-full">
