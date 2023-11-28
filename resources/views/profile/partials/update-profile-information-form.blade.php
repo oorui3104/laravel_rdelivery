@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="w-full mb-8 text-xl px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-white">
             ユーザー情報編集
         </h2>
 

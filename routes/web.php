@@ -22,11 +22,10 @@ Route::prefix('carts')
     Route::get('/', 'index')->name('index');
     Route::post('/{id}', 'store')->name('store');
     Route::post('delete/{id}', 'delete')->name('delete');
+    Route::get('checkout', 'checkout')->name('checkout');
+    Route::get('cancel', 'cancel')->name('cancel');
+    Route::get('success', 'success')->name('success');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth:users', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
